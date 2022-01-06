@@ -1,0 +1,62 @@
+
+<!-- Navbar -->
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+               </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+              <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item mx-md-3"><a href="/" class="nav-link text-white">All Projects</a></li>
+                    <li class="nav-item mx-md-3"><a href="#" class="nav-link text-white">Dashboard</a></li>
+                    <li class="nav-item mx-md-3"><a href="#" class="nav-link text-white">Logout</a></li>
+                </ul>
+              </div>
+        </div>
+    </nav>
+
+    <h1>Dashboard</h1>
+    <div>
+    <a href="/add" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Add Project</a>
+</div>
+
+    {{#if ass}}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each ass}}
+        <tr>
+            <td><a href="/ass/{{_id}}">{{title}}</a></td>
+            <td>{{formatDate date 'MMMM Do YYYY, h:mm:ss a'}}</td>
+            <td><span class="">{{status}}</span></td>
+            <td>
+                <a href="/stories/edit/{{_id}}" class="btn btn-float">
+                    <i class="fas fa-edit"></i>
+                </a>
+
+                <form action="/stories/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn red">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+{{else}}
+<p>You have not created any Projects</p>
+{{/if}}
